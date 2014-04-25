@@ -1,0 +1,32 @@
+/* file copy.c0 */
+int[] array_copy(int[] A, int n)
+//@requires 0 <= n && n <= \length(A);
+//@ensures \length(\result) == n;
+{
+  int[] B = alloc_array(int, n);
+  for (int i = 0; i < n; i++)
+  //@loop_invariant 0 <= i;
+  B[i] = A[i]; 
+  return B;
+}
+pixel[] quantize(pixel[] pixels, int height, int width, int q_level)
+{
+   int n = height * width;
+   int[] copy = array_copy(pixels,n);
+   int andingNumber = 0xFF << q_level;
+   for (int i = 0; i < n; i++)
+     {
+     int alpha =( copy[i] & 0xFF000000);
+     int blue = copy[i] & 0xFF;
+     int green =  (copy[i] & 0xFF00)>> 8;
+     int red = (copy[i] & 0xFF0000) >> 16;
+     int newBlue = blue & andingNumber;
+     int newGreen =( green & andingNumber)<< 8 ;
+     int newRed = (red & andingNumber)<< 16;
+     int newColor =alpha | newBlue | newGreen | newRed;
+     copy[i] = newColor;
+     }
+   return copy; 
+}
+
+
