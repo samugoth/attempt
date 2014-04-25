@@ -1,5 +1,5 @@
 #include <stdio.h>
-//ANOTHER AHCKSJDHF HI THERE I MADE THIS CHANGE 
+//more more moreANOTHER AHCKSJDHF HI THERE I MADE THIS CHANGE 
 int rotateRight(int x, int n) {
 	int sign_bit = (~n+1) >> 31; //0 for 0, -1 for rest
   	int shift_size = (32 + (~n+1)) & sign_bit;
